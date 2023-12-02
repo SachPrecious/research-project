@@ -18,7 +18,7 @@ pipeline {
                             extensions: [],
                             submoduleCfg: [],
                             userRemoteConfigs: [[credentialsId: 'git',         
-                                                 url: "${params.GIT-URL}"]]
+                                                 url: params.'GIT-URL']]
                              ])
                    }
                  }         
