@@ -28,5 +28,16 @@ pipeline {
                 sh "docker build -t sachithram/${Project-Category}-${Docker-Image-Name} ."
             }
         }
+        stage('Run Docker Image'){
+            steps{
+                sh "docker run sachithram/${Project-Category}-${Docker-Image-Name}"
+            }
+        }
+        stage('Monitoring'){
+            steps{
+                sh "docker stat"
+            }
+        }
+        
     }
 }
