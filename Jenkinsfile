@@ -23,10 +23,10 @@ pipeline {
                    }
                  }         
         }
-        stage('Build Docker Image') {
+  stage('Build Docker Image') {
             steps {
                 script {
-                    sh "docker build -t sachithram/$params.{Project-Category}-$params.{Docker-Image-Name} ."
+                    sh "docker build -t sachithram/${params.Project-Category}-${params.Docker-Image-Name} ."
                 }
             }
         }
@@ -34,11 +34,10 @@ pipeline {
         stage('Run Docker Image') {
             steps {
                 script {
-                    sh "docker run sachithram/$params.{Project-Category}-$params.{Docker-Image-Name}"
+                    sh "docker run sachithram/${params.Project-Category}-${params.Docker-Image-Name}"
                 }
             }
         }
-
         stage('Monitoring'){
             steps{
                 sh "docker stat"
