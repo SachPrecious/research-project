@@ -23,5 +23,10 @@ pipeline {
                    }
                  }         
         }
+        stage('Build Docker Image'){
+            steps{
+                sh "docker build -t sachithram/${Project-Category}-${Docker-Image-Name} ."
+            }
+        }
     }
 }
