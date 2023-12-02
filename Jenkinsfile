@@ -23,7 +23,7 @@ pipeline {
                    }
                  }         
         }
-  stage('Build Docker Image') {
+   stage('Build Docker Image') {
             steps {
                 script {
                     sh "docker build -t sachithram/${params.Project-Category}-${params.Docker-Image-Name} ."
