@@ -28,7 +28,7 @@ pipeline {
                 script {
                      sh "echo 'Project Category: ${params['Project-Category']}'"
            
-                    //sh "docker build -t sachithram/${params.Project-Category}${params.Docker-Image-Name} ."
+                    sh "docker build -t sachithram/${params['Project-Category']}${params['Docker-Image-Name']} ."
                 }
             }
         }
