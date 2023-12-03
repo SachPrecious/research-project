@@ -26,7 +26,8 @@ pipeline {
    stage('Build Docker Image') {
             steps {
                 script {
-                     echo "Project Category: ${params.Project-Category}"
+                     sh "echo 'Project Category: ${params['Project-Category']}'"
+           
                     //sh "docker build -t sachithram/${params.Project-Category}${params.Docker-Image-Name} ."
                 }
             }
@@ -35,7 +36,7 @@ pipeline {
         stage('Run Docker Image') {
             steps {
                 script {
-                   sh " echo "Project Category: ${params.Project-Category}""
+                   sh "ls "
 
                     //sh "docker run sachithram/${params.Project-Category}${params.Docker-Image-Name}"
                 }
