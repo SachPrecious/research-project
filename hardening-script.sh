@@ -1,5 +1,40 @@
 #!/bin/bash
 
+
+cat <<EOF > docker-compose.yaml
+version: '3'
+
+services:
+  gitlab:
+    image: gitlab/gitlab-ee:latest
+    container_name: gitlab
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        gitlab_rails['gitlab_shell_ssh_port'] = 22
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /srv/gitlab/config:/etc/gitlab
+      - /srv/gitlab/logs:/var/log/gitlab
+      - /srv/gitlab/data:/var/opt/gitlab
+
+  postgres:
+    image: postgres:12
+    container_name: gitlab-postgres
+    restart: always
+    environment:
+      POSTGRES_DB: gitlab
+      POSTGRES_USER: gitlab
+      POSTGRES_PASSWORD: gitlab
+    volumes:
+      - /srv/gitlab/postgres:/var/lib/postgresql/data
+
+volumes:
+  jenkins_home:
+EOF
+
+
 # Update the package list
 sudo apt update -y && sudo apt upgrade -y
 
