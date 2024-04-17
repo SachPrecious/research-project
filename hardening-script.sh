@@ -1,7 +1,17 @@
 #!/bin/bash
 
 # Update the package list
-sudo apt update
+sudo apt update -y && sudo apt upgrade -y
+
+# Download Docker installation script
+curl -fsSL https://get.docker.com -o get-docker.sh
+
+# Run Docker installation script with dry-run option
+sudo sh ./get-docker.sh 
+systemctl start docker && systemctl enable docker
+docker pull gitlab
+docker pull nginx
+docker pull jenkins
 
 # Install dependencies
 sudo apt install -y apt-transport-https ca-certificates curl software-properties-common
